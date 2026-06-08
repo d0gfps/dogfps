@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DOGFPS777 CS2 Hub: portal fan-made para mapas, granadas, treino, rotina de mira e apoio via LivePix." />
+  <meta name="theme-color" content="#ff7a18" />
+  <title>DOGFPS777 CS2 Hub</title>
+
+  <!-- Google Fonts: Rajdhani e Orbitron. Fonte pública servida pelo Google Fonts. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="smokeCanvas" aria-hidden="true"></canvas>
+  <div class="animated-grenade" aria-hidden="true"><span></span></div>
+  <div class="site-noise" aria-hidden="true"></div>
+
+  <header class="topbar" id="topbar">
+    <a class="brand" href="#home" aria-label="Ir para o início do DOGFPS777 CS2 Hub">
+      <span class="brand-mark">D7</span>
+      <span class="brand-text">DOGFPS777</span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="main-nav" id="mainNav" aria-label="Menu principal">
+      <a href="#home">Home</a>
+      <a href="#mapas">Mapas</a>
+      <a href="#granadas">Granadas</a>
+      <a href="#treino">Treino Pro</a>
+      <a href="#mira">Mira</a>
+      <a href="#livepix">LivePix</a>
+      <a href="#creditos">Créditos</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section" id="home">
+      <div class="hero-grid">
+        <div class="hero-content reveal">
+          <p class="eyebrow">Fan-made • treino • lineups • disciplina</p>
+          <h1 class="glitch" data-text="DOGFPS777 CS2 HUB">DOGFPS777 CS2 HUB</h1>
+          <p class="hero-subtitle">Mapas, granadas, treino e foco rumo ao alto nível.</p>
+          <div class="hero-actions" aria-label="Ações principais">
+            <a class="btn btn-primary" href="https://livepix.gg/dogfps777" target="_blank" rel="noopener noreferrer">Apoiar no LivePix</a>
+            <a class="btn btn-secondary" href="#mapas">Ver Mapas</a>
+            <a class="btn btn-ghost" href="#granadas">Treinar Granadas</a>
+          </div>
+          <div class="hero-stats" aria-label="Indicadores do hub">
+            <div>
+              <strong id="trainingCounter">0</strong>
+              <span>treinos concluídos</span>
+            </div>
+            <div>
+              <strong>20</strong>
+              <span>mapas catalogados</span>
+            </div>
+            <div>
+              <strong>6</strong>
+              <span>granadas em pixel art</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="support-card reveal" aria-labelledby="supportTitle">
+          <div class="radar-card">
+            <span class="radar-dot"></span>
+            <span class="radar-ring"></span>
+            <span class="radar-sweep"></span>
+          </div>
+          <h2 id="supportTitle">Apoie o projeto</h2>
+          <p>Fortaleça o hub e ajude a manter conteúdos, lineups e rotinas atualizadas.</p>
+
+          <!-- QR Code gerado por serviço público gratuito:
+               Fonte: QRServer API, goqr.me / api.qrserver.com.
+               Uso: imagem externa gerada dinamicamente a partir do link LivePix.
+               Troque o parâmetro data= para mudar o link do QR Code. -->
+          <img
+            class="qr-code"
+            src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Flivepix.gg%2Fdogfps777"
+            alt="QR Code para apoiar o DOGFPS777 no LivePix"
+            loading="lazy"
+          />
+          <button class="btn btn-copy" type="button" data-copy="https://livepix.gg/dogfps777" aria-label="Copiar link do LivePix">Copiar link LivePix</button>
+          <p class="copy-status" id="copyStatusHome" role="status" aria-live="polite"></p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section tactical-strip" aria-label="Frase motivacional">
+      <p>“Não é sorte. É treino, foco, repetição e disciplina.”</p>
+    </section>
+
+    <section class="section" id="mapas">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Tático • rotação • utilitários</p>
+        <h2>Mapas</h2>
+        <p>Cards interativos com callouts, dicas rápidas e pontos comuns para granadas. Treine em servidor privado antes de usar em partidas.</p>
+      </div>
+
+      <div class="map-tools reveal" aria-label="Ferramentas de filtro de mapas">
+        <label class="search-box" for="mapSearch">
+          <span>Buscar mapa</span>
+          <input id="mapSearch" type="search" placeholder="Ex.: Mirage, Nuke, Pool Day..." autocomplete="off" />
+        </label>
+
+        <div class="filter-group" role="group" aria-label="Filtrar mapas por tipo">
+          <button class="filter-btn active" type="button" data-filter="todos">Todos</button>
+          <button class="filter-btn" type="button" data-filter="premier">Premier</button>
+          <button class="filter-btn" type="button" data-filter="competitivo">Competitivo</button>
+          <button class="filter-btn" type="button" data-filter="casual">Casual</button>
+          <button class="filter-btn" type="button" data-filter="wingman">Wingman</button>
+          <button class="filter-btn" type="button" data-filter="arms-race">Arms Race</button>
+        </div>
+      </div>
+
+      <div class="map-grid" id="mapGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="section" id="granadas">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Pixel art original • CSS shapes</p>
+        <h2>Granadas</h2>
+        <p>Ícones originais feitos com CSS, sem copiar ícones oficiais, assets extraídos do jogo ou artes protegidas.</p>
+      </div>
+
+      <div class="grenade-grid reveal">
+        <article class="grenade-card">
+          <div class="pixel-grenade smoke" aria-hidden="true"><span></span></div>
+          <h3>Smoke grenade</h3>
+          <p>Use para bloquear visão, dominar espaço e executar entrada em bomb.</p>
+        </article>
+        <article class="grenade-card">
+          <div class="pixel-grenade flash" aria-hidden="true"><span></span></div>
+          <h3>Flashbang</h3>
+          <p>Jogue para companheiros, não apenas para você. Timing vence duelo.</p>
+        </article>
+        <article class="grenade-card">
+          <div class="pixel-grenade he" aria-hidden="true"><span></span></div>
+          <h3>HE grenade</h3>
+          <p>Dano em rush, finalização em inimigo marcado e controle de economia.</p>
+        </article>
+        <article class="grenade-card">
+          <div class="pixel-grenade molotov" aria-hidden="true"><span></span></div>
+          <h3>Molotov</h3>
+          <p>Limpa posição, atrasa retake e força inimigo a sair do pixel.</p>
+        </article>
+        <article class="grenade-card">
+          <div class="pixel-grenade incendiary" aria-hidden="true"><span></span></div>
+          <h3>Incendiária</h3>
+          <p>Controle defensivo com fogo, anti-rush e quebra de execução rápida.</p>
+        </article>
+        <article class="grenade-card">
+          <div class="pixel-grenade decoy" aria-hidden="true"><span></span></div>
+          <h3>Decoy</h3>
+          <p>Distração, pressão psicológica e fake simples quando usada com intenção.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="treino">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Rotina • consistência • evolução</p>
+        <h2>Treino Pro Player</h2>
+        <p>Blocos de treino para virar um jogador mais completo: mira, utilitário, comunicação e mentalidade.</p>
+      </div>
+
+      <div class="training-grid" id="trainingGrid"></div>
+    </section>
+
+    <section class="section aim-section" id="mira">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Checklist diário salvo no navegador</p>
+        <h2>Mira e Rotina</h2>
+        <p>Marque sua rotina diária. O progresso fica salvo no localStorage deste navegador.</p>
+      </div>
+
+      <div class="routine-layout reveal">
+        <div class="routine-card">
+          <h3>Checklist de rotina diária</h3>
+          <form id="routineForm" class="routine-list">
+            <label><input type="checkbox" value="aimbotz" /> <span>15 min Aim Botz</span></label>
+            <label><input type="checkbox" value="recoil" /> <span>10 min recoil</span></label>
+            <label><input type="checkbox" value="smokes" /> <span>10 min smokes</span></label>
+            <label><input type="checkbox" value="dm" /> <span>3 partidas deathmatch</span></label>
+            <label><input type="checkbox" value="demo" /> <span>assistir 1 demo</span></label>
+            <label><input type="checkbox" value="erros" /> <span>revisar erros</span></label>
+          </form>
+          <div class="routine-actions">
+            <button class="btn btn-primary" id="finishTraining" type="button">Concluir treino</button>
+            <button class="btn btn-ghost" id="resetRoutine" type="button">Resetar checklist</button>
+          </div>
+        </div>
+
+        <div class="routine-card aim-notes">
+          <h3>Foco da mira</h3>
+          <ul>
+            <li>Crosshair sempre na altura da cabeça.</li>
+            <li>Pré-aim antes de abrir ângulo.</li>
+            <li>Spray curto quando o duelo for longe.</li>
+            <li>Reposicione depois de eliminar.</li>
+            <li>Comunicação curta: informação, dano e posição.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section livepix-section" id="livepix">
+      <div class="livepix-panel reveal">
+        <div>
+          <p class="eyebrow">LivePix / Apoie o Projeto</p>
+          <h2>Apoie o DOGFPS777</h2>
+          <p>Se esse projeto te ajudou a evoluir no CS2, fortaleça pelo LivePix. Toda ajuda mantém o hub vivo, atualizado e cada vez mais completo.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://livepix.gg/dogfps777" target="_blank" rel="noopener noreferrer">Apoiar agora</a>
+            <button class="btn btn-secondary btn-copy" type="button" data-copy="https://livepix.gg/dogfps777">Copiar link</button>
+          </div>
+          <p class="copy-status" id="copyStatusLivepix" role="status" aria-live="polite"></p>
+        </div>
+        <div class="qr-frame">
+          <!-- QR Code gerado por serviço público gratuito:
+               Fonte: QRServer API, goqr.me / api.qrserver.com.
+               Licença/termos devem ser conferidos no site do provedor antes de uso comercial.
+               Para usar outro provedor, troque o src abaixo. -->
+          <img
+            class="qr-code qr-code-large"
+            src="https://api.qrserver.com/v1/create-qr-code/?size=340x340&data=https%3A%2F%2Flivepix.gg%2Fdogfps777"
+            alt="QR Code grande para apoiar o DOGFPS777 no LivePix"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="section credits-section" id="creditos">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Uso responsável de fontes públicas</p>
+        <h2>Créditos e Fontes Públicas</h2>
+      </div>
+
+      <div class="credits-grid reveal">
+        <article class="credit-card">
+          <h3>Aviso fan-made</h3>
+          <p>Counter-Strike / CS2 pertence à Valve. Este site é fan-made, educativo e não oficial.</p>
+          <p>Não use logotipos oficiais, imagens protegidas, screenshots oficiais ou assets extraídos do jogo sem autorização.</p>
+        </article>
+        <article class="credit-card">
+          <h3>Assets visuais</h3>
+          <p>Este template usa pixel art original feita com CSS/SVG autoral, sem skins oficiais e sem artes da Valve.</p>
+          <p>Ao adicionar imagem externa, coloque comentário no HTML ou rodapé com nome da fonte, autor e licença.</p>
+        </article>
+        <article class="credit-card">
+          <h3>Fontes sugeridas</h3>
+          <ul>
+            <li>Google Fonts: Rajdhani e Orbitron.</li>
+            <li>Wikimedia Commons para imagens públicas quando permitido.</li>
+            <li>OpenGameArt para assets com licença aberta, quando permitido.</li>
+            <li>SVG Repo para ícones com licença compatível, quando permitido.</li>
+            <li>Documentação pública e notícias oficiais de Counter-Strike para referência de mapas.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="mapModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <article class="modal-panel" tabindex="-1">
+      <button class="modal-close" type="button" data-close-modal aria-label="Fechar painel de dicas">×</button>
+      <div class="modal-header">
+        <div class="map-pixel modal-pixel" id="modalPixel" aria-hidden="true"></div>
+        <div>
+          <p class="eyebrow" id="modalType">Mapa</p>
+          <h2 id="modalTitle">Mapa</h2>
+          <p id="modalDescription"></p>
+        </div>
+      </div>
+      <div class="modal-content" id="modalContent"></div>
+      <p class="modal-warning">Treine em servidor privado antes de usar em partidas.</p>
+    </article>
+  </div>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Voltar ao topo">↑</button>
+
+  <footer class="site-footer">
+    <p>DOGFPS777 CS2 Hub — projeto fan-made, educativo e independente. Não afiliado à Valve.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
